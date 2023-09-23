@@ -28,12 +28,12 @@ void acceptDateFromConsole(struct Date* ptrDate)
     scanf("%d%d%d",&ptrDate->day,&ptrDate->month,&ptrDate->year);
 }
 
-void printDateOnConsole(struct Date* ptrDate)
+void printDateOnConsole(struct Date ptrDate)
 {
-    printf("Date is %d/%d/%d\n",ptrDate->day,ptrDate->month,ptrDate->year);
+    printf("Date is %d/%d/%d\n",ptrDate.day,ptrDate.month,ptrDate.year);
 }
 
-void main()
+int main()
 {
     int choice;
     struct Date d1;
@@ -46,14 +46,15 @@ void main()
     {
         case 1: 
                 initDate(&d1);
-                printDateOnConsole(&d1);
+                printDateOnConsole(d1);
                 break;
         case 2:
                 acceptDateFromConsole(&d1);
                 break;
         case 3: 
-                printDateOnConsole(&d1);
+                printDateOnConsole(d1);
                 break;
     }
     }while(choice!=4);
+    return 0;
 }
