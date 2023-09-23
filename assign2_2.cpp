@@ -23,6 +23,7 @@
 
         Address(string building,string city,string street,int pin)     //Parameterized Constructor
         {
+            cout<<"In Parameterized constructor";
             this->building=building;
             this->city=city;
             this->street=street;
@@ -124,6 +125,9 @@
 
         
         a1.display();
+
+        Address a2("Neelkamal Building","Nashik","College road",422205);
+        a2.display();
 
 
 
