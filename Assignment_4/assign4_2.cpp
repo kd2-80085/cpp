@@ -13,6 +13,12 @@ class stack
     int *top;
 
 public:
+    stack()
+    {
+        this->size = 5;
+        top = new int[size];
+    }
+
     stack(int size)
     {
         this->size = size;
@@ -23,10 +29,14 @@ public:
     {
         if (!isFull())
         {
-            cout << "Enter Element: ";
-            cin >> *(this->top);
-            this->top++;
-            index++;
+            cout << "Enter " << size << " Elements : \n";
+
+            for (int i = 0; i < size; i++)
+            {
+                cin >> *(this->top);
+                this->top++;
+                index++;
+            }
         }
         else
             cout << "Stack is full." << endl;
@@ -36,9 +46,13 @@ public:
     {
         if (!isEmpty())
         {
-            this->top--;
-            cout << *(this->top);
-            index--;
+            cout << "Popped elements : \n";
+            for (int i = 0; i < size; i++)
+            {
+                this->top--;
+                cout << *(this->top) << "\n";
+                index--;
+            }
         }
         else
             cout << "Stack is empty." << endl;
@@ -64,15 +78,21 @@ public:
 
     void print()
     {
-        int *st = top;
-        int i = 0;
-
-        while (i < index)
+        if (!isEmpty())
         {
-            st--;
-            cout << *st << " ";
-            i++;
+            cout << "Elements in the stack are : \n";
+            int *st = top;
+            int i = 1;
+            while (i <= index)
+            {
+                st--;
+                cout << *st << " ";
+                i++;
+            }
         }
+        else
+            cout << "Stack is empty." << endl;
+
         cout << endl;
     }
 };
@@ -80,19 +100,25 @@ public:
 int main()
 {
     int size;
+    stack s1;
+    s1.push();
+
+    s1.peek();
+
+    s1.print();
+    s1.pop();
+    s1.print();
+
     cout << "Enter Size of stack: ";
     cin >> size;
-    stack s(size);
+    stack s2(size);
 
-    for (int i = 0; i < size; i++)
-        s.push();
+    s2.push();
 
-    s.peek();
+    s2.peek();
 
-    s.print();
-
-    for (int i = 0; i < size; i++)
-        s.pop();
+    s2.print();
+    s2.pop();
 
     return 0;
 }
