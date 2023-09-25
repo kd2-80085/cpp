@@ -8,17 +8,17 @@ class Cylinder
     float radius;
     float height;
     float volume;
-public :
 
-Cylinder();
-Cylinder(float ,float );  //ctor initializer list
+public:
+    Cylinder();
+    Cylinder(float, float); // ctor initializer list
 
-float getRadius();
-void setRadius();
-float getHeight();
-void setHeight();
-float getVolume();
-void printVolume();
+    float getRadius();
+    void setRadius();
+    float getHeight();
+    void setHeight();
+    float getVolume();
+    void printVolume();
 };
 
 #endif
