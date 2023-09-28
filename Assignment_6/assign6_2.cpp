@@ -115,14 +115,24 @@ public:
     {
         this->comm = comm;
     }
-    // void display()
-    // {
-    //     employee::display();
-    // }
-    // void accept()
-    // {
-    //     employee::accept();
-    // }
+
+    void setComm(float comm){
+        this->comm=comm;
+
+    }
+    float getComm()
+    {
+        return this->comm;
+    }
+
+    void display()
+    {
+        employee::display();
+    }
+    void accept()
+    {
+        employee::accept();
+    }
 
 protected:
     void displaySalesman()
@@ -145,10 +155,9 @@ public:
     {
     }
     sales_manager(int id, float sal, float bonus, float comm) : manager(id, sal, bonus), salesman(id, sal, comm), employee(id, sal)
-
     {
     }
-
+    
     void display()
     {
         manager::display();
@@ -165,15 +174,24 @@ public:
 
 int main()
 {
+
     sales_manager s1(1, 20000, 1000, 20);
-
     s1.display();
-
     sales_manager s2;
     s2.display();
 
     s2.accept();
     s2.display();
 
+    s2.setId(2);
+    s2.setSal(3000);
+    cout<<s2.getId();
+    cout<<s2.getSal();
+    s2.setBonus(1500);
+    s2.setComm(500);
+    cout<<s2.getBonus();
+    cout<<s2.getComm();
+    
+    s2.display();
     return 0;
 }
