@@ -15,15 +15,35 @@ class Matrix
 public:
     Matrix()
     {
+        this->r = 0;
+        this->c = 0;
     }
 
     Matrix(int r, int c)
     {
+
         this->r = r;
         this->c = c;
         mat = new int *[r]; // allocate 1st dim
-        for (int i = 0; i < c; i++)
-            mat[i] = new int[c]; // allocate 2nd dim
+
+        for (int i = 0; i < r; i++) // allocate memory for each row ptr
+            mat[i] = new int[c];    // allocate 2nd dim
+
+        for (int i = 0; i < r; i++)
+        {
+            for (int j = 0; j < c; j++)
+            {
+                mat[i][j] = 0;
+            }
+        }
+    }
+
+    ~Matrix()
+    {
+        for (int i = 0; i < r; i++)
+            delete[] mat[i]; // Deallocate memory for each row
+        delete[] mat;        // Deallocate memory for rows
+        mat = NULL;          // Set mat to nullptr after deallocation
     }
 
     void accept()
@@ -87,57 +107,69 @@ public:
 
     void mult(Matrix m2)
     {
-        Matrix res(r, c);
-        if (r == m2.c)
+        if (c != m2.r)
         {
-            for (int i = 0; i < r; i++)
-            {
-                for (int j = 0; j < m2.c; j++)
-                {
-                    res.mat[i][j] = 0;
-                    for (int k = 0; k < m2.c; k++)
-                        res.mat[i][j] += mat[i][k] * m2.mat[k][j];
-                }
-            }
-            cout << "\n Resultant Multiplication ";
-            res.print();
+            cout << "Multiplication is not possible due to incompatible dimensions.\n";
+            return;
         }
-        else
-            cout << "Multiplication is not possible ";
+
+        Matrix res(r, m2.c); // Allocate memory for the result matrix 'res'
+
+        for (int i = 0; i < r; i++) // Loop through rows of the first matrix
+        {
+            for (int j = 0; j < m2.c; j++) // Loop through columns of the second matrix
+            {
+                int temp = 0;
+                for (int k = 0; k < c; k++) // Loop to perform the dot product
+                {
+                    temp += mat[i][k] * m2.mat[k][j];
+                }
+                res.mat[i][j] = temp;
+            }
+        }
+
+        cout << "\n Resultant Multiplication ";
+        res.print();
     }
 
     void transpose()
     {
-        Matrix res(r, c);
-        for (int i = 0; i < r; i++)
-        {
-            for (int j = 0; j < c; j++)
-            {
-                res.mat[i][j] = this->mat[j][i];
-            }
+        Matrix res(c, r);
+
+    // Assigning values accordingly. 
+    for(int i = 0; i < r; i++){
+        for(int j = 0; j < c; j++){
+            res.mat[j][i] = mat[i][j];
         }
+    }
         cout << "Resultant Transpose of matrix m1";
         res.print();
     }
+
+
+
+    
 };
 
 int main()
 {
-    int r, c;
-    cout << "Enter Matrix dimensions r and c: \n";
-    cin >> r >> c;
+    int r1, c1, r2, c2;
 
-    Matrix m1(r, c);
+    cout << "Enter Matrix dimensions r and c: \n";
+    cin >> r1 >> c1;
+    Matrix m1(r1, c1);
     m1.accept();
     m1.print();
 
-    Matrix m2(r, c);
+    cout << "Enter Matrix dimensions r and c: \n";
+    cin >> r2 >> c2;
+    Matrix m2(r2, c2);
     m2.accept();
     m2.print();
 
-    m1.add(m2);
-    m1.subtract(m2);
+    // m1.add(m2);
+    // m1.subtract(m2);
 
-    m1.mult(m2);
+    //m1.mult(m2);
     m1.transpose();
 }
