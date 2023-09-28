@@ -30,30 +30,27 @@ public:
         return this->d;
     }
 
-    void setDay()
+    void setDay(int d)
     {
-        cout << "Enter DAY :";
-        cin >> this->d;
+        this->d = d;
     }
     int getMonth()
     {
         return this->m;
     }
 
-    void setMonth()
+    void setMonth(int m)
     {
-        cout << "Enter month :";
-        cin >> this->m;
+        this->m = m;
     }
     int getYear()
     {
         return this->y;
     }
 
-    void setYear()
+    void setYear(int y)
     {
-        cout << "Enter Year :";
-        cin >> this->y;
+        this->y = y;
     }
 
     void acceptDate()
@@ -92,49 +89,46 @@ public:
         this->addr = addr;
         this->name = name;
     }
+
     string getName()
     {
         return this->name;
     }
-    void setName()
+
+    void setName(string name)
     {
-        cout << "Enter name";
-        getchar();
-        getline(cin, this->name);
+
+        this->name = name;
     }
+
     string getAddr()
     {
         return this->addr;
     }
-    void setAddr()
+
+    void setAddr(string addr)
     {
-        cout << "Enter address";
-        getchar();
-        getline(cin, this->addr);
+        this->addr = addr;
     }
 
-    void getBdate()
+    date getBdate()
     {
-        cout << "Birthdate is :";
-        cout << bdate.getDay() << "/" << bdate.getMonth() << "/" << bdate.getYear();
+        return bdate;
     }
 
-    void setBdate()
+    void setBdate(date bdate)
     {
-        cout << "Enter Birthdate :";
-        bdate.setDay();
-        bdate.setMonth();
-        bdate.setYear();
+
+        this->bdate = bdate;
     }
-    
+
     void acceptPerson()
     {
-        cout << "Enter person name : ";
         getchar();
+        cout << "Enter person name :";
         getline(cin, this->name);
 
         cout << "Enter address : ";
-        getchar();
         getline(cin, this->addr);
 
         bdate.acceptDate();
@@ -142,15 +136,19 @@ public:
 
     void displayPerson()
     {
+        cout << "\n******************************* Person Details *******************************\n";
+        getchar();
         cout << "Person name is : " << this->name << endl;
         cout << "Person address is : " << this->addr << endl;
-        cout << "Birthdate is :";
+        cout << "Birthdate is : ";
+
         bdate.displayDate();
+        cout << "\n*****************************************************************************\n";
     }
 };
 
-class employee 
-{ 
+class employee
+{
 private:
     int id;
     float sal;
@@ -176,20 +174,18 @@ public:
         return this->id;
     }
 
-    void setid()
+    void setId(int id)
     {
-        cout << "Enter id :";
-        cin >> this->id;
+        this->id = id;
     }
     float getSal()
     {
         return this->sal;
     }
 
-    void setSal()
+    void setSal(float sal)
     {
-        cout << "Enter salary :";
-        cin >> this->sal;
+        this->sal = sal;
     }
 
     string getDept()
@@ -197,25 +193,19 @@ public:
         return this->dept;
     }
 
-    void setDept()
+    void setDept(string dept)
     {
-        cout << "Enter department :";
-        getchar();
-        getline(cin, this->dept);
+        this->dept = dept;
     }
 
-    void getDOJ()
+    date getDOJ()
     {
-        cout << "Date of joining is : ";
-        cout << doj.getDay() << "/" << doj.getMonth() << "/" << doj.getYear();
+        return this->doj;
     }
 
-    void setDOJ()
+    void setDOJ(date d1)
     {
-        cout << "Enter DOJ :";
-        doj.setDay();
-        doj.setMonth();
-        doj.setYear();
+        this->doj = d1;
     }
 
     void acceptEmp()
@@ -228,32 +218,37 @@ public:
         getchar();
         getline(cin, this->dept);
 
+        cout << "Enter date of joining : ";
         doj.acceptDate();
     }
 
     void displayEmp()
     {
+        cout << "\n****************************** Employee Details ******************************\n";
         cout << "Employee id : " << this->id << endl;
         cout << "Employee salary : " << this->sal << endl;
         cout << "Employee dept : " << this->dept << endl;
         cout << "Employee joining date :";
+
         doj.displayDate();
+        cout << "\n*****************************************************************************\n";
     }
 };
 
 int main()
 {
-    // employee e1, e2;
+    // employee e1;
+    // e1.acceptEmp();
     // e1.displayEmp();
-    // e1.setid();
-    // e1.setDept();
-    // e1.setDOJ();
-    // e1.setSal();
+    // date d1;
+    // d1.acceptDate();
+    // e1.setDOJ( d1);
     // e1.displayEmp();
 
-    // e2.acceptEmp();
-    // e2.displayEmp();
+    employee e2(3, 20000, "HR", 12, 12, 2023);
+    e2.displayEmp();
 
-    employee e3(1, 20000, "HR", 12, 12, 2023);
-    e3.displayEmp();
+    person p1;
+    p1.acceptPerson();
+    p1.displayPerson();
 }
