@@ -69,6 +69,14 @@ public:
         cout << "Date is : ";
         cout << this->d << "/" << this->m << "/" << this->y << endl;
     }
+    bool isLeapYear()
+    {
+
+        if ((this->y % 4 == 0 && this->y % 100 != 0) || (this->y % 4 == 0 && this->y % 400 == 0))
+            return 1;
+        else
+            return -1;
+    }
 };
 
 class person
@@ -143,6 +151,11 @@ public:
         cout << "Birthdate is : ";
 
         bdate.displayDate();
+        if (bdate.isLeapYear())
+            cout << "Yera is leap year";
+        else
+            cout << "Yera is leap year" << endl;
+
         cout << "\n*****************************************************************************\n";
     }
 };
@@ -231,19 +244,25 @@ public:
         cout << "Employee joining date :";
 
         doj.displayDate();
+                doj.displayDate();
+        if (doj.isLeapYear())
+            cout << "Yera is leap year";
+        else
+            cout << "Yera is leap year" << endl;
+
         cout << "\n*****************************************************************************\n";
     }
 };
 
 int main()
 {
-    // employee e1;
-    // e1.acceptEmp();
-    // e1.displayEmp();
-    // date d1;
-    // d1.acceptDate();
-    // e1.setDOJ( d1);
-    // e1.displayEmp();
+     employee e1;
+     e1.acceptEmp();
+     e1.displayEmp();
+     date d1;
+     d1.acceptDate();
+     e1.setDOJ( d1);
+     e1.displayEmp();
 
     employee e2(3, 20000, "HR", 12, 12, 2023);
     e2.displayEmp();
