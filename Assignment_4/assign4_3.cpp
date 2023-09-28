@@ -167,9 +167,8 @@ int main()
     m2.accept();
     m2.print();
 
-    // m1.add(m2);
-    // m1.subtract(m2);
-
-    //m1.mult(m2);
+    m1.add(m2);
+    m1.subtract(m2);
     m1.transpose();
+    m1.mult(m2);
 }
