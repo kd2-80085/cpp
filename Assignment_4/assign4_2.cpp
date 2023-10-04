@@ -73,7 +73,7 @@ public:
 
     int isFull()
     {
-        return (index >= size);
+        return (index > size);
     }
 
     void print()

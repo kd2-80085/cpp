@@ -73,6 +73,8 @@ public:
     friend void sortRecords(Student arr[]);
 };
 
+
+
 int searchRecords(Student arr[])
 {
     string name;
@@ -82,12 +84,14 @@ int searchRecords(Student arr[])
 
     for (int i = 0; i < n; i++)
     {
-        string lowerStr1 = name;
-        string lowerStr2 = arr[i].name;
-        transform(lowerStr1.begin(), lowerStr1.end(), lowerStr1.begin(), ::tolower);
-        transform(lowerStr2.begin(), lowerStr2.end(), lowerStr2.begin(), ::tolower);
+        string studentName = arr[i].name;
+        string searchName = name;
 
-        if (lowerStr1 == lowerStr2)
+        // Convert both names to lowercase for case-insensitive comparison
+        transform(studentName.begin(), studentName.end(), studentName.begin(), ::tolower);
+        transform(searchName.begin(), searchName.end(), searchName.begin(), ::tolower);
+
+        if (studentName.find(searchName) != string::npos)
             return i;
     }
     return -1;

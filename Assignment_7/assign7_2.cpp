@@ -114,6 +114,7 @@ int main()
 {
     int choice;
     int index = 0;
+
     Product *arr[3]; // To store 3 products
 
     while ((choice = menu()) != 0)
@@ -156,15 +157,14 @@ int main()
 
     // Calculate and display the final bill
     double totalBill = 0.0;
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < index; i++)
     {
         totalBill += arr[i]->calcFinalPrice();
     }
 
     cout << "Total Bill : " << totalBill << std::endl;
 
-    // Clean up memory by deleting allocated objects
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < index; i++)
     {
         delete arr[i];
     }

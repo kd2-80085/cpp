@@ -21,6 +21,10 @@ public:
         this->id = id;
         this->salary = salary;
     }
+    virtual  ~Employee()
+    {
+        // Deallocate the dynamically allocated string
+    }
 
     int getId()
     {
@@ -268,10 +272,11 @@ int main()
         }
     }
 
-    for (int i = 0; i < index; i++)
-    {
-        delete arr[i];
-    }
+    for (int i = 0; i < index; i++) {
+    delete arr[i]; // This deletes the objects pointed to by the pointers
+
+}
+
 
     return 0;
 }
